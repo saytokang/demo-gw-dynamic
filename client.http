@@ -1,121 +1,15 @@
-GET http://localhost:8080/users
+GET http://localhost:9000/users/1
 Content-Type: application/json
 ###
+
+GET https://localhost:9000/users/1
+Content-Type: application/json
+###
+
 
 GET http://localhost:8080/users/1
 Content-Type: application/json
 ###
 
-GET https://localhost:443/users/1
-Content-Type: application/json
-###
-
-GET http://localhost:8080/svc/1
-Content-Type: application/json
-###
-
-GET http://localhost:8080/users/1?delay=3
-Content-Type: application/json
-###
-
-GET http://localhost:8080/ok
-Content-Type: application/json
-###
-
-POST http://localhost:8080/_/apis
-Content-Type: application/json
-Authorization: Basic admin:1234
-
-{
-    "id" : "r1",
-    "uri" : "https://biz.com"
-}
-###
-
-# redirect 
-GET http://localhost:8080/r4
-Content-Type: application/json
-###
-
-GET http://localhost:8080/local
-Content-Type: application/json
-###
-
-
-GET http://localhost:8080/aaa/users/2
-Content-Type: application/json
-X-ID: aecca54d-d260-4c99-918d-83df2c665da1
-###
-
-POST http://106.10.54.127:7770/map/log/new/apic
-Content-Type: application/json
-
-[
-    {
-    "tx_guid" : "aecca54d-d260-4c99-918d-83df2c665da5",
-    "hp_seq" : 1,
-    "tracking_dt" : "20210107120101000",
-    "svc_nm" : "gw",
-    "log_loc" : "1",
-    "log_dt" : "20210107120101000",
-    "path" : "/test/sample",
-    "mth" : "GET",
-    "clnt_ip" : "127.0.0.1",
-    "api_uuid" : "5d8f4e61-a160-40a6-bc06-db1de858bc4f",
-    "clnt_id" : "client_id",
-    "in_out_cd" : "1",
-    "res_sts" : 200,
-    "err_cont" : "",
-    "res_cd" : "0",
-    "node_sts" : "0",
-    "process_type" : "",
-    "extention" : ""
-    },
-    {
-        "tx_guid" : "aecca54d-d260-4c99-918d-83df2c665da5",
-        "hp_seq" : 2,
-        "tracking_dt" : "20210107120101000",
-        "svc_nm" : "gw",
-        "log_loc" : "2",
-        "log_dt" : "20210107120101000",
-        "path" : "/test/sample",
-        "mth" : "GET",
-        "clnt_ip" : "127.0.0.1",
-        "api_uuid" : "5d8f4e61-a160-40a6-bc06-db1de858bc4f",
-        "clnt_id" : "client_id",
-        "in_out_cd" : "2",
-        "res_sts" : 200,
-        "err_cont" : "",
-        "res_cd" : "0",
-        "node_sts" : "0",
-        "process_type" : "RESP",
-        "extention" : ""
-    }
-]
-###
-
-
-POST http://106.10.54.127:7770/map/log/new/apic2
-Content-Type: application/json
-
-{
-    "tx_guid" : "aecca54d-d260-4c99-918d-83df2c665da4",
-    "hp_seq" : 1,
-    "tracking_dt" : "20210107120101000",
-    "svc_nm" : "gw",
-    "log_loc" : "1",
-    "log_dt" : "20210107120101000",
-    "path" : "/test/sample",
-    "mth" : "GET",
-    "clnt_ip" : "127.0.0.1",
-    "api_uuid" : "5d8f4e61-a160-40a6-bc06-db1de858bc4f",
-    "clnt_id" : "client_id",
-    "in_out_cd" : "1",
-    "res_sts" : 200,
-    "err_cont" : "",
-    "res_cd" : "0",
-    "node_sts" : "0",
-    "process_type" : "",
-    "extention" : ""
-}
+GET https://reqres.in/api/users/2
 ###
