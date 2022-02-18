@@ -1,0 +1,80 @@
+
+server:
+  # port: 443
+  # http.port: 8080
+  ssl:
+    enabled: true
+    # key-store: src/main/resources/ssl/keystore.jks.p12
+    key-store: classpath:ssl/keystore.jks.p12
+    key-store-password: 123456
+    key-store-type: PKCS12
+    key-alias: localhost
+
+spring:
+  cloud:
+    gateway:
+      httpclient:
+        ssl:
+          useInsecureTrustManager: true    
+      default-filters:
+        - AddResponseHeader=X-Response-Default-Red, Default-Blue
+        
+      routes:
+      - id: r1
+        uri: https://reqres.in
+        predicates:
+        - Path=/svc/1
+        filters:
+        - SetPath=/api/users/1
+      - id: r2
+        uri: https://reqres.in
+        predicates:
+        - Path=/users/{segment}
+        filters:
+        - SetPath=/api/users/{segment}
+      - id: r3
+        uri: http://httpstat.us
+        predicates:
+          - Path=/ok
+        filters:
+          - SetPath=/200
+      - id: r4
+        uri: https://reqres.in
+        predicates:
+          - Path=/r4
+        filters:
+          - RedirectTo=302, https://reqres.in/api/users
+      - id: r10
+        uri: https://reqres.in
+        predicates:
+          - Path=/aaa/users/1
+          - After=2022-01-07T10:38:50.035+09:00[Asia/Seoul]
+        filters:
+          - SetPath=/api/users/1
+
+      - id: r11
+        uri: https://reqres.in
+        predicates:
+          - Path=/aaa/users/2
+          - Header=X-ID, \b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b
+        filters:
+          - SetPath=/api/users/2        
+
+      - id: r12
+        uri: https://reqres.in
+        predicates:
+          - Path=/{segment}/users/2
+        filters:
+          - SetPath=/api/users/2  
+
+      - id: r13
+        uri: http://localhost:7770
+        predicates:
+          - Path=/local
+        filters:
+          - SetPath=/gw
+logging:
+  level:
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.security: TRACE
